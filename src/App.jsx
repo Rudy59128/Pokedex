@@ -26,9 +26,6 @@ const pokemonList = [
 ];
 
 function App() {
-  const [pokemonIndex, setPokemon] = useState(0);
-  const pokemon = pokemonList[pokemonIndex];
-
   useEffect(
     () => {
       alert("Hello Pokemon Trainer :)");
@@ -38,8 +35,7 @@ function App() {
 
   return (
     <div>
-      <PokemonCard pokemon={pokemon} />
-      <NavBar setPokemon={setPokemon} pokemonIndex={pokemonIndex} pokemonList={pokemonList}/>
+      <NavBar pokemonList={pokemonList}/>
     </div>
   );
 }

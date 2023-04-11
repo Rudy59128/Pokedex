@@ -1,28 +1,27 @@
 import React, { useState } from "react";
+import PokemonCard from "./PokemonCard";
 
 
-function NavBar({ setPokemon, pokemonIndex, pokemonList }) {
-    function handleClick() {
-        setPokemon(pokemonIndex + 1);
-    }
+function NavBar({ pokemonList }) {
+    const [pokemonSelect, setPokemonToSelect] = useState(pokemonList[0]);
 
-    function prevClick() {
-        setPokemon(pokemonIndex - 1);
-    }
+
+    const handleClick = (pokemon) => {
+        setPokemonToSelect(pokemon);
+    };
 
     return (
         <div>
-            {pokemonList[pokemonIndex].name == "Pikachu" ? alert("Pika Pikachu !!!") : ""}
-            {pokemonIndex <= 0 ? (
-                <span style={{ display: "none" }}></span>
-            ) : (
-                <button onClick={prevClick}>Précédent</button>
-            )}
-            {pokemonIndex < pokemonList.length - 1 ? (
-                <button onClick={handleClick}>Suivant</button>
-            ) : (
-                <span style={{ display: "none" }}></span>
-            )}
+            <div>
+                <PokemonCard pokemon={pokemonSelect} />
+            </div>
+                {
+                    pokemonList.map((pokemon) => (
+                        <button key={pokemon.name} onClick={() => handleClick(pokemon)}>
+                            {pokemon.name}
+                        </button>
+                    ))
+                }
         </div>
     )
 }
